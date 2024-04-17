@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.menuAbout){
             view = findViewById(R.id.textItem);
             view.setText("Clicked about button");
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
         }
         return true;
     }
