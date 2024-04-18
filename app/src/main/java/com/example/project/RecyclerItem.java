@@ -5,14 +5,12 @@ public class RecyclerItem {
     private int distanceFromSun;
     private int size;
     private int moonCount;
-    private int systemPlacement;
 
-    public RecyclerItem(String name, int distanceFromSun, int size, int moonCount, int systemPlacement) {
+    public RecyclerItem(String name, int distanceFromSun, int size, int moonCount) {
         this.name = name;
         this.distanceFromSun = distanceFromSun;
         this.size = size;
         this.moonCount = moonCount;
-        this.systemPlacement = systemPlacement;
     }
 
     public String getName() {
@@ -47,11 +45,4 @@ public class RecyclerItem {
         this.moonCount = moonCount;
     }
 
-    public int getSystemPlacement() {
-        return systemPlacement;
-    }
-
-    public void setSystemPlacement(int systemPlacement) {
-        this.systemPlacement = systemPlacement;
-    }
 }

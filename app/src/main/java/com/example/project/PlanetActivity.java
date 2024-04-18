@@ -20,7 +20,22 @@ public class PlanetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planet);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            name = extras.getString("name");
+            distance = extras.getInt("distance");
+            size = extras.getInt("size");
+            moons = extras.getInt("moons");
+        }
 
+        TextView nameView = findViewById(R.id.textView5);
+        nameView.setText(name);
+        TextView distanceView = findViewById(R.id.textView6);
+        distanceView.setText("Distance from sun: " + distance);
+        TextView sizeView = findViewById(R.id.textView7);
+        sizeView.setText("Planet size: " + size);
+        TextView moonView = findViewById(R.id.textView8);
+        moonView.setText("Number of moons: " + moons);
 
 
 
