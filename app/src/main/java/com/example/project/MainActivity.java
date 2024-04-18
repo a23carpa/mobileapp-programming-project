@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //Tillfällig data
         ArrayList<RecyclerItem> items = new ArrayList<>(Arrays.asList(
                 new RecyclerItem("Earth", 20,30, 1),
-                new RecyclerItem("Marse", 10,33, 2),
+                new RecyclerItem("Mars", 10,33, 2),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Earth", 20,30, 1),
-                new RecyclerItem("Marse", 10,33, 2),
+                new RecyclerItem("Mars", 10,33, 2),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),

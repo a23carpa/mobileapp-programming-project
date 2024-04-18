@@ -15,6 +15,7 @@ public class PlanetActivity extends AppCompatActivity {
     private int moons;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class PlanetActivity extends AppCompatActivity {
             size = extras.getInt("size");
             moons = extras.getInt("moons");
         }
+
+        setTitle(name + ": Facts");
 
         TextView nameView = findViewById(R.id.textView5);
         nameView.setText(name);
