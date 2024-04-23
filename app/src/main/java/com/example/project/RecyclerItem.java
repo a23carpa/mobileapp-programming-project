@@ -10,6 +10,7 @@ public class RecyclerItem {
     private int size;
     @SerializedName("cost")
     private int moonCount;
+    private Auxdata auxdata;
 
 
 
@@ -54,5 +55,9 @@ public class RecyclerItem {
 
     public String getCategory() {
         return category;
+    }
+
+    public Auxdata getAuxdata() {
+        return auxdata;
     }
 }
