@@ -12,11 +12,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23carpa";
+    RecyclerViewAdapter adapter;
+    private Gson gson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +32,19 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Tillfällig data
-        ArrayList<RecyclerItem> items = new ArrayList<>(Arrays.asList(
-                new RecyclerItem("Earth", 20,30, 1),
-                new RecyclerItem("Mars", 10,33, 2),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95)
-        ));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+        ArrayList<RecyclerItem> items = new ArrayList<>();
+
+
+        adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerItem item) {
                 Intent intent = new Intent(MainActivity.this, PlanetActivity.class);
-                intent.putExtra("name", item.getName()); // Optional
-                intent.putExtra("distance", item.getDistanceFromSun()); // Optional
-                intent.putExtra("size", item.getSize()); // Optional
-                intent.putExtra("moons", item.getMoonCount()); // Optional
+                intent.putExtra("name", item.getName());
+                intent.putExtra("distance", item.getDistanceFromSun());
+                intent.putExtra("size", item.getSize());
+                intent.putExtra("moons", item.getMoonCount());
+                intent.putExtra("category", item.getCategory());
+
                 startActivity(intent);
             }
 
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView view = findViewById(R.id.recyclerView);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
+
+        gson = new Gson();
+        new JsonTask(this).execute(JSON_URL);
 
     }
     @Override
@@ -68,5 +72,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    public void onPostExecute(String json) {
+        Type type = new TypeToken<List<RecyclerItem>>() {}.getType();
+        List<RecyclerItem> listOfMountains = gson.fromJson(json, type);
+        adapter.update(listOfMountains);
+        adapter.notifyDataSetChanged();
+
     }
 }
