@@ -11,7 +11,7 @@ public class PlanetActivity extends AppCompatActivity {
     private int distance;
     private int size;
     private int moons;
-
+    private String category;
 
 
     @Override
@@ -25,6 +25,7 @@ public class PlanetActivity extends AppCompatActivity {
             distance = extras.getInt("distance");
             size = extras.getInt("size");
             moons = extras.getInt("moons");
+            category = extras.getString("category");
         }
 
         setTitle(name + ": Facts");
@@ -37,6 +38,8 @@ public class PlanetActivity extends AppCompatActivity {
         sizeView.setText("Planet size: " + size);
         TextView moonView = findViewById(R.id.moonView);
         moonView.setText("Number of moons: " + moons);
+        TextView category = findViewById(R.id.categoryView);
+        category.setText("Part of: " + category);
 
 
 
