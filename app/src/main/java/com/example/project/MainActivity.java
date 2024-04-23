@@ -34,18 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Earth", 20,30, 1),
-                new RecyclerItem("Mars", 10,33, 2),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
-                new RecyclerItem("Jupiter", 30, 40, 95),
                 new RecyclerItem("Jupiter", 30, 40, 95)
         ));
-
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerItem item) {
@@ -64,11 +54,6 @@ public class MainActivity extends AppCompatActivity {
         view.setAdapter(adapter);
 
     }
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_bar_menu, menu);

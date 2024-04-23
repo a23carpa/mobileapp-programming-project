@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class PlanetActivity extends AppCompatActivity {
 
@@ -31,13 +29,13 @@ public class PlanetActivity extends AppCompatActivity {
 
         setTitle(name + ": Facts");
 
-        TextView nameView = findViewById(R.id.textView5);
+        TextView nameView = findViewById(R.id.nameView);
         nameView.setText(name);
-        TextView distanceView = findViewById(R.id.textView6);
+        TextView distanceView = findViewById(R.id.locationView);
         distanceView.setText("Distance from sun: " + distance);
-        TextView sizeView = findViewById(R.id.textView7);
+        TextView sizeView = findViewById(R.id.sizeView);
         sizeView.setText("Planet size: " + size);
-        TextView moonView = findViewById(R.id.textView8);
+        TextView moonView = findViewById(R.id.moonView);
         moonView.setText("Number of moons: " + moons);
 
 

@@ -48,15 +48,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView thirdText;
         TextView bottomText;
 
-
-
         ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            topText = itemView.findViewById(R.id.textView);
-            secondText = itemView.findViewById(R.id.textView2);
-            thirdText = itemView.findViewById(R.id.textView3);
-            bottomText = itemView.findViewById(R.id.textView4);
+            topText = itemView.findViewById(R.id.recyclerName);
+            secondText = itemView.findViewById(R.id.recyclerLocation);
+            thirdText = itemView.findViewById(R.id.recyclerSize);
+            bottomText = itemView.findViewById(R.id.recyclerMoons);
         }
 
         @Override

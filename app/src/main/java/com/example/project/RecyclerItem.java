@@ -1,10 +1,17 @@
 package com.example.project;
 
+import com.google.gson.annotations.SerializedName;
+
 public class RecyclerItem {
     private String name;
+    private String category;
+    @SerializedName("location")
     private int distanceFromSun;
     private int size;
+    @SerializedName("cost")
     private int moonCount;
+
+
 
     public RecyclerItem(String name, int distanceFromSun, int size, int moonCount) {
         this.name = name;
@@ -45,4 +52,7 @@ public class RecyclerItem {
         this.moonCount = moonCount;
     }
 
+    public String getCategory() {
+        return category;
+    }
 }
