@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 intent.putExtra("size", item.getSize());
                 intent.putExtra("moons", item.getMoonCount());
                 intent.putExtra("category", item.getCategory());
+                intent.putExtra("image", item.getAuxdata().getImg());
 
                 startActivity(intent);
             }
@@ -67,9 +68,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menuAbout){
-
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.menuSortAll){
+
+        } else if (item.getItemId() == R.id.menuSortSolar){
+
+        } else if (item.getItemId() == R.id.menuSortExternal){
+
         }
         return true;
     }

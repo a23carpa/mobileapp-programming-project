@@ -8,4 +8,21 @@
         android:icon="@drawable/ic_about_foreground"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/menuSortAll"
+        android:title="ShowAll"
+        android:icon="@drawable/ic_about_foreground"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuSortSolar"
+        android:title="Solar system"
+        android:icon="@drawable/ic_about_foreground"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menuSortExternal"
+        android:title="External planets"
+        android:icon="@drawable/ic_about_foreground"
+        app:showAsAction="never" />
+
 </menu>
