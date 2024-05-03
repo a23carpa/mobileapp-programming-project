@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 public class PlanetActivity extends AppCompatActivity {
 
     private String name;
-    private int distance;
+    private String distance;
     private int size;
     private int moons;
     private String category;
@@ -25,7 +25,7 @@ public class PlanetActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             name = extras.getString("name");
-            distance = extras.getInt("distance");
+            distance = extras.getString("distance");
             size = extras.getInt("size");
             moons = extras.getInt("moons");
             category = extras.getString("category");
