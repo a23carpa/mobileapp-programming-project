@@ -6,7 +6,7 @@ public class RecyclerItem {
     private String name;
     private String category;
     @SerializedName("location")
-    private int distanceFromSun;
+    private String distanceFromSun;
     private int size;
     @SerializedName("cost")
     private int moonCount;
@@ -14,7 +14,7 @@ public class RecyclerItem {
 
 
 
-    public RecyclerItem(String name, int distanceFromSun, int size, int moonCount) {
+    public RecyclerItem(String name, String distanceFromSun, int size, int moonCount) {
         this.name = name;
         this.distanceFromSun = distanceFromSun;
         this.size = size;
@@ -29,11 +29,11 @@ public class RecyclerItem {
         this.name = name;
     }
 
-    public int getDistanceFromSun() {
+    public String getDistanceFromSun() {
         return distanceFromSun;
     }
 
-    public void setDistanceFromSun(int distanceFromSun) {
+    public void setDistanceFromSun(String distanceFromSun) {
         this.distanceFromSun = distanceFromSun;
     }
 
