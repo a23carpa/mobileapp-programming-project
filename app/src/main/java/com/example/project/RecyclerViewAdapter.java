@@ -78,8 +78,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public interface OnClickListener {
         void onClick(RecyclerItem item);
     }
-    public void update(List<RecyclerItem> listOfMountains) {
+    public void update(List<RecyclerItem> listOfPlanets) {
         items.clear();
-        items.addAll(listOfMountains);
+        items.addAll(listOfPlanets);
     }
 }

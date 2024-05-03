@@ -2,6 +2,7 @@ package com.example.project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23carpa";
     RecyclerViewAdapter adapter;
+    List<RecyclerItem> jsonPlanets;
+    List<RecyclerItem> solarPlanets;
+    List<RecyclerItem> externalPlanets;
     private Gson gson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +75,29 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.menuSortAll){
+            adapter.update(jsonPlanets);
+            adapter.notifyDataSetChanged();
 
         } else if (item.getItemId() == R.id.menuSortSolar){
+            solarPlanets = new ArrayList<>();
+            for(RecyclerItem planet : jsonPlanets){
+                if(planet.getCategory().equals("Solar system")){
+                    solarPlanets.add(planet);
+                }
+            }
+            adapter.update(solarPlanets);
+            adapter.notifyDataSetChanged();
 
         } else if (item.getItemId() == R.id.menuSortExternal){
+            externalPlanets = new ArrayList<>();
+            for(RecyclerItem planet : jsonPlanets){
 
+                if(planet.getCategory().equals("External")){
+                    externalPlanets.add(planet);
+                }
+            }
+            adapter.update(externalPlanets);
+            adapter.notifyDataSetChanged();
         }
         return true;
     }
@@ -83,9 +105,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     @Override
     public void onPostExecute(String json) {
         Type type = new TypeToken<List<RecyclerItem>>() {}.getType();
-        List<RecyclerItem> listOfMountains = gson.fromJson(json, type);
-        adapter.update(listOfMountains);
+        jsonPlanets = gson.fromJson(json, type);
+        adapter.update(jsonPlanets);
         adapter.notifyDataSetChanged();
-
     }
 }
