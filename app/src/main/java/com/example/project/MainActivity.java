@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     List<RecyclerItem> solarPlanets;
     List<RecyclerItem> externalPlanets;
     private Gson gson;
+    SharedPreferences myPreferenceRef;
+    SharedPreferences.Editor myPreferenceEditor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         });
 
+        myPreferenceRef = getSharedPreferences("pref", MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();
+
         RecyclerView view = findViewById(R.id.recyclerView);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
@@ -75,38 +81,65 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.menuSortAll){
-            adapter.update(jsonPlanets);
-            adapter.notifyDataSetChanged();
+            sortAll();
 
         } else if (item.getItemId() == R.id.menuSortSolar){
-            solarPlanets = new ArrayList<>();
-            for(RecyclerItem planet : jsonPlanets){
-                if(planet.getCategory().equals("Solar system")){
-                    solarPlanets.add(planet);
-                }
-            }
-            adapter.update(solarPlanets);
-            adapter.notifyDataSetChanged();
+            sortSolar();
 
         } else if (item.getItemId() == R.id.menuSortExternal){
-            externalPlanets = new ArrayList<>();
-            for(RecyclerItem planet : jsonPlanets){
-
-                if(planet.getCategory().equals("External")){
-                    externalPlanets.add(planet);
-                }
-            }
-            adapter.update(externalPlanets);
-            adapter.notifyDataSetChanged();
+            sortExternal();
         }
         return true;
     }
 
     @Override
     public void onPostExecute(String json) {
+
+        String sort = (myPreferenceRef.getString("Sort", "No Pref"));
+
         Type type = new TypeToken<List<RecyclerItem>>() {}.getType();
         jsonPlanets = gson.fromJson(json, type);
+
+         if(sort.equals("Solar")){
+            sortSolar();
+        } else if(sort.equals("External")){
+            sortExternal();
+        } else {
+             jsonPlanets = gson.fromJson(json, type);
+             adapter.update(jsonPlanets);
+             adapter.notifyDataSetChanged();
+         }
+    }
+
+    public void sortAll(){
         adapter.update(jsonPlanets);
         adapter.notifyDataSetChanged();
+        myPreferenceEditor.putString("Sort", "All");
+        myPreferenceEditor.apply();
+    }
+    public void sortSolar(){
+        solarPlanets = new ArrayList<>();
+        for(RecyclerItem planet : jsonPlanets){
+            if(planet.getCategory().equals("Solar system")){
+                solarPlanets.add(planet);
+            }
+        }
+        adapter.update(solarPlanets);
+        adapter.notifyDataSetChanged();
+        myPreferenceEditor.putString("Sort", "Solar");
+        myPreferenceEditor.apply();
+    }
+
+    public void sortExternal(){
+        externalPlanets = new ArrayList<>();
+        for(RecyclerItem planet : jsonPlanets){
+            if(planet.getCategory().equals("External")){
+                externalPlanets.add(planet);
+            }
+        }
+        adapter.update(externalPlanets);
+        adapter.notifyDataSetChanged();
+        myPreferenceEditor.putString("Sort", "External");
+        myPreferenceEditor.apply();
     }
 }
