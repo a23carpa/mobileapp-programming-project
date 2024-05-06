@@ -50,21 +50,12 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerLocation" />
 
     <TextView
-        android:id="@+id/recyclerMoons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#F3F3F3"
-        app:layout_constraintLeft_toRightOf="@id/recyclerImage"
-        app:layout_constraintTop_toBottomOf="@id/recyclerSize" />
-
-    <TextView
         android:id="@+id/recyclerCatagory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="#F3F3F3"
         app:layout_constraintLeft_toRightOf="@id/recyclerImage"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerMoons" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

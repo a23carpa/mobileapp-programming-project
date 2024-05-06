@@ -41,7 +41,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.topText.setText("" + items.get(position).getName());
         holder.secondText.setText("Distance from the Sun: " + items.get(position).getDistanceFromSun());
         holder.thirdText.setText("Planet size: " + items.get(position).getSize());
-        holder.fourthText.setText("Number of Moons: " + items.get(position).getMoonCount());
         holder.fifthText.setText(("Group: " + items.get(position).getCategory()));
     }
 
@@ -55,7 +54,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView topText;
         TextView secondText;
         TextView thirdText;
-        TextView fourthText;
         TextView fifthText;
 
         ViewHolder(View itemView) {
@@ -65,7 +63,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             topText = itemView.findViewById(R.id.recyclerName);
             secondText = itemView.findViewById(R.id.recyclerLocation);
             thirdText = itemView.findViewById(R.id.recyclerSize);
-            fourthText = itemView.findViewById(R.id.recyclerMoons);
             fifthText = itemView.findViewById(R.id.recyclerCatagory);
         }
 
